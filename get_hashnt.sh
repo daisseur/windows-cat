@@ -17,7 +17,6 @@ sudo umount /dev/$part
 sudo rmdir /mnt/$part
 # sudo apt-get install impacket-secretsdump -y > /dev/null
 hashs="$(sudo impacket-secretsdump -sam ./win/SAM -system ./win/SYSTEM -security ./win/SECURITY LOCAL | grep :::)"
-echo $hashs
 hashs="${hashs// ::: /$'\n'}"
 
 # Remplacer ':' par un espace
