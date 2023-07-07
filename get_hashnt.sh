@@ -14,10 +14,10 @@ sudo cp /mnt/$part/$configPath/SYSTEM ./win/SYSTEM
 sudo umount /dev/$part
 sudo rmdir /mnt/$part
 # sudo apt-get install impacket-secretsdump -y > /dev/null
-hashs=$(sudo impacket-secretsdump -sam ./win/SAM -system ./win/SYSTEM -security ./win/SECURITY LOCAL | grep :::)
+hashs="$(sudo impacket-secretsdump -sam ./win/SAM -system ./win/SYSTEM -security ./win/SECURITY LOCAL | grep :::)"
 
 # Remplacer ':::' par un espace
-hashs="${hashs//:::/ }"
+hashs=${hashs/:::/' '}
 
 # Remplacer ':' par un espace
 hashs="${hashs//:/ }"
