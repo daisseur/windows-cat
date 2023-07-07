@@ -5,7 +5,7 @@ else
   part=$1
 fi
 echo "dumping hashnt from $part"
-if [$part in $(ls)]; then
+if [ $part in $(ls) ]; then
   sudo rmdir -r /mnt/$part/
 fi
 sudo mkdir /mnt/$part
