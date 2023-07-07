@@ -15,11 +15,18 @@ sudo umount /dev/$part
 sudo rmdir /mnt/$part
 # sudo apt-get install impacket-secretsdump -y > /dev/null
 hashs=$(sudo impacket-secretsdump -sam ./win/SAM -system ./win/SYSTEM -security ./win/SECURITY LOCAL | grep :::)
-IFS="\n"
-read -a hashsList <<< "$hashs"
-for line in "${hashsList[@]}"; do
-  line=${line/:::/"\n"}
-  echo -e ${line//:/" "} >> ./win/hashnt
+hashs="${hashs//$'\n'/}"
+
+# Remplacer ':::' par un espace
+hashs="${hashs//:::/ }"
+
+# Remplacer ':' par un espace
+hashs="${hashs//:/ }"
+
+# Parcourir les éléments séparés par des espaces et les afficher
+for i in $hashs; do
+  echo "$i"
+  echo -e $i >> ./win/hashnt
 done
 
 cat ./win/hashnt
