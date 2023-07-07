@@ -42,5 +42,5 @@ selected_element=$(echo "$hashs" | sed -n "${selected_line}p")
 
 # Écrire l'élément sélectionné dans le fichier "hashes.txt"
 element=($selected_element)
-echo "Vous avez selectionné le compte ${element[1]}"
+echo "Vous avez selectionné le compte ${element[0]}"
 echo "${element[-1]}" > hashes.txt
