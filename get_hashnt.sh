@@ -1,6 +1,6 @@
-if [ -z "$1" ] then
+if [ -z "$1" ]; then
 part="sda3"
-else
+else do
 part=$1
 fi
 echo "dumping hashnt from $part"
