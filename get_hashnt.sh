@@ -26,7 +26,7 @@ hashs="${hashs//:/ }"
 while IFS= read -r line; do
   elements=($line)
   echo $elements
-  name=${element[1]}
+  name=$elements
   hashnt=${elements[-1]}
   echo "$name = $hashnt" >> ./win/hashnt
 done <<< "$hashs"
