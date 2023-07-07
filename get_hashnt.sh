@@ -47,9 +47,9 @@ echo "${element[-1]}" > hashes.txt
 
 echo "Downloading CUPP [Common User Passwords Profiler]..."
 git clone -q https://github.com/Mebus/cupp
-echo "--------------------------------"
+echo "----------------------------------------------------------------------------------------------------------"
 python3 cupp/cupp.py -h
-echo "--------------------------------"
+echo "----------------------------------------------------------------------------------------------------------"
 python3 cupp/cupp.py -i
 
 clear
