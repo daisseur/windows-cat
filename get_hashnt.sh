@@ -1,6 +1,8 @@
 #!/bin/bash
 
 configPath="Windows/System32/config"
+counter=1
+
 if [ -z "$1" ]; then
   part="sda3"
 else
@@ -27,7 +29,16 @@ while IFS= read -r line; do
   elements=($line)
   name=$elements
   hashnt=${elements[-1]}
-  echo "$name = $hashnt" >> ./win/hashnt
+  echo "[$counter]  $name = $hashnt" >> ./win/hashnt
+  counter+=1
 done <<< "$hashs"
 
 cat ./win/hashnt
+
+read -p "Choisissez un numéro de ligne : " selected_line
+
+# Récupérer l'élément correspondant au numéro de ligne choisi
+selected_element=$(echo "$hashs" | sed -n "${selected_line}p")
+
+# Écrire l'élément sélectionné dans le fichier "hashes.txt"
+echo "$selected_element" > hashes.txt
