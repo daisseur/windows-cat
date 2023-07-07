@@ -45,8 +45,15 @@ element=($selected_element)
 echo "Vous avez selectionné le compte ${element[0]}"
 echo "${element[-1]}" > hashes.txt
 
-git clone https://github.com/Mebus/cupp
+echo "Downloading CUPP [Common User Passwords Profiler]..."
+git clone -q https://github.com/Mebus/cupp
 echo "--------------------------------"
 python3 cupp/cupp.py -h
 echo "--------------------------------"
 python3 cupp/cupp.py -i
+
+clear
+ls
+read -p "Entez le nom du fichier contenant la wordlist : " wordFile
+echo "starting hashcat..."
+sudo hashcat -m 1000 hashes.txt $wordFile
