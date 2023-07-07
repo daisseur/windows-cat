@@ -44,3 +44,9 @@ selected_element=$(echo "$hashs" | sed -n "${selected_line}p")
 element=($selected_element)
 echo "Vous avez selectionné le compte ${element[0]}"
 echo "${element[-1]}" > hashes.txt
+
+git clone https://github.com/Mebus/cupp
+echo "--------------------------------"
+python3 cupp.py -h
+echo "--------------------------------"
+python3 cupp/cupp.py -i
