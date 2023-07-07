@@ -30,7 +30,7 @@ while IFS= read -r line; do
   name=$elements
   hashnt=${elements[-1]}
   echo "[$counter]  $name = $hashnt" >> ./win/hashnt
-  counter+=1
+  ((count++))
 done <<< "$hashs"
 
 cat ./win/hashnt
