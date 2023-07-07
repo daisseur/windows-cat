@@ -4,7 +4,7 @@ if [ -z "$1" ]; then
 else
   part=$1
 fi
-echo "dumping hashnt from $part"
+echo "Dumping hashnt from '$part' ..."
 sudo mkdir /mnt/$part
 sudo mount -o ro /dev/$part /mnt/$part
 mkdir win
@@ -14,5 +14,8 @@ sudo cp /mnt/$part/$configPath/SYSTEM ./win/SYSTEM
 sudo umount /dev/$part
 sudo rmdir /mnt/$part
 # sudo apt-get install impacket-secretsdump -y > /dev/null
-sudo impacket-secretsdump -sam ./win/SAM -system ./win/SYSTEM -security ./win/SECURITY LOCAL | grep ::: > ./win/hashnt
+hashs=$(sudo impacket-secretsdump -sam ./win/SAM -system ./win/SYSTEM -security ./win/SECURITY LOCAL | grep :::)
+hashs=${hashs#":::"}
+hashs=${hashs/":"/" "}
+echo $hashs > ./win/hashnt
 cat ./win/hashnt
