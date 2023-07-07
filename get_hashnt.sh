@@ -24,9 +24,9 @@ hashs="${hashs//:/ }"
 
 # Utiliser la commande "read" pour parcourir les lignes de la variable
 while IFS= read -r line; do
-  line=`$(echo "$line" | awk "{print $1}") = $(echo "$line" | awk "{print $NF}")`
-  echo "$line"
-  echo "$line" >> ./win/hashnt
+  name=$(echo "$line" | awk "{print $1}")
+  hashnt=$(echo "$line" | awk "{print $NF}")
+  echo "$name = $hashnt" >> ./win/hashnt
 done <<< "$hashs"
 
 cat ./win/hashnt
