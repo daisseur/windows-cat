@@ -8,7 +8,7 @@ sudo mkdir /mnt/$part
 sudo mount -o ro /dev/$part /mnt/$part
 mkdir win
 sudo cp /mnt/$part/Windows/SAM ./win/SAM
-sudo cp /mnt/$part/Windows/SAM ./win/SECURITY
+sudo cp /mnt/$part/Windows/SECURITY ./win/SECURITY
 sudo apt-get install impacket-secretsdump -y
 sudo impacket-secretsdump -sam ./win/SAM -security ./win/SECURITY LOCAL -just-dc-ntlm > ./win/hashnt
 cat ./win/hashnt
