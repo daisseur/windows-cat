@@ -47,6 +47,6 @@ echo "${element[-1]}" > hashes.txt
 
 git clone https://github.com/Mebus/cupp
 echo "--------------------------------"
-python3 cupp.py -h
+python3 cupp/cupp.py -h
 echo "--------------------------------"
 python3 cupp/cupp.py -i
