@@ -17,5 +17,5 @@ sudo rmdir /mnt/$part
 hashs=$(sudo impacket-secretsdump -sam ./win/SAM -system ./win/SYSTEM -security ./win/SECURITY LOCAL | grep :::)
 hashs=${hashs%":::"}
 # hashs=${hashs}
-echo -e ${hashs//:/" "} > ./win/hashnt
+echo -e ${hashs//':'/" "} > ./win/hashnt
 cat ./win/hashnt
