@@ -41,4 +41,5 @@ read -p "Choisissez un numéro de ligne : " selected_line
 selected_element=$(echo "$hashs" | sed -n "${selected_line}p")
 
 # Écrire l'élément sélectionné dans le fichier "hashes.txt"
+echo $selected_element
 echo "$selected_element" > hashes.txt
